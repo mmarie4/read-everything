@@ -15,7 +15,7 @@ export const Header: FC = () => {
 
     return (
     <div className="p-4 w-full h-12 bg-primary static flex justify-between items-center shadow">
-        <p className="font-bold text-xl text-secondary">Read everything</p>
+        <p className="font-bold text-xl text-secondary">R E A D • E V E R Y T H I N G</p>
 
         <div className="font-semibold text-secondarylight py-1 px-3 text-xs flex">
             <div className={currentLocale === "EN" ? "font-bold" : "cursor-pointer font-semibold hover:text-secondary"} onClick={() => onClickLocale(locales.en)}>EN</div>

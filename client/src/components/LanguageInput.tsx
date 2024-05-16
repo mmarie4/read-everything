@@ -6,6 +6,7 @@ import { ActionMeta, InputActionMeta } from "react-select";
 
 export interface LanguageInputProps {
     placeholder: string;
+    value: string;
     onChange: (value: Option | null, actionMeta: ActionMeta<Option>) => void;
 }
 
@@ -22,7 +23,7 @@ export const LanguageInput: FC<LanguageInputProps> = (props: LanguageInputProps)
             options={options}
             isSearchable
             onChange={props.onChange}
-            inputValue={""}
+            inputValue={props.value}
             onInputChange={function (newValue: string, actionMeta: InputActionMeta): void {
                 
             } }

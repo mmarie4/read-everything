@@ -22,7 +22,9 @@ public class ReadPictureTextCommandHandler(IConfiguration configuration, IMediat
             VisualFeatures.Read,
             cancellationToken: cancellationToken);
 
-        var text = string.Join("\n", result.Value.Read.Blocks.SelectMany(b => b.Lines.Select(l => l.Text)));
+        var text = string
+            .Join("\n", result.Value.Read.Blocks.SelectMany(b => b.Lines.Select(l => l.Text)))
+            .Replace("\n", " ");
 
         var translated = await _mediator.Send(new TranslateCommand(text, request.TargetLanguage, request.SourceLanguage), cancellationToken);
 

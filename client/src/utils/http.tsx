@@ -69,9 +69,9 @@ const buildHeaders = (contentType = "application/json") => {
 }
 
 const handleError = (result: any, errorCallback: Function) => {
-    if (result.status === 500)
+    if (result?.status === 500)
         errorCallback("Internal server error");
-    if ([400, 401, 403, 404].includes(result.status))
+    if ([400, 401, 403, 404].includes(result?.status))
         errorCallback(result?.data?.error || "Unknown error");
 }
 
