@@ -8,8 +8,8 @@ import { Option } from "../types/Option";
 import t from "../translations/i18n";
 
 export const ReadText: FC = () => {
-    const [sourceLanguage, setSourceLanguage] = useState<string>('en' as string);
-    const [targetLanguage, setTargetLanguage] = useState<string>('en' as string);
+    const [sourceLanguage, setSourceLanguage] = useState<Option | null>(null);
+    const [targetLanguage, setTargetLanguage] = useState<Option | null>(null);
     const [imgUrl, setImgUrl] = useState<string>('' as string);
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [caption, setCaption] = useState<string>('' as string);
@@ -23,8 +23,8 @@ export const ReadText: FC = () => {
         setCaption('');
         const form = new FormData();
         form.append('input', e.target.files[0]);
-        form.append('sourceLanguage', sourceLanguage);
-        form.append('targetLanguage', targetLanguage);
+        form.append('sourceLanguage', sourceLanguage?.value as string);
+        form.append('targetLanguage', targetLanguage?.value as string);
         setImgUrl(URL.createObjectURL(e.target.files[0]));
         setLoading(true);
         const result = await await http.multipart({
@@ -41,16 +41,16 @@ export const ReadText: FC = () => {
     
     return (
         <Wrapper errorMessage={errorMessage}>
-            <div className="px-64 py-32 flex flex-col gap-12">
+            <div className="py-32 flex flex-col gap-12">
                 <LanguageInput
                     value={sourceLanguage}
                     placeholder={t("sourceLanguage")}
-                    onChange={(value: Option | null, actionMeta: ActionMeta<Option>) => setSourceLanguage(value?.value as string)}
+                    onChange={(value: Option | null, actionMeta: ActionMeta<Option>) => setSourceLanguage(value)}
                 />
                 <LanguageInput
                     value={targetLanguage}
                     placeholder={t("targetLanguage")}
-                    onChange={(value: Option | null, actionMeta: ActionMeta<Option>) => setTargetLanguage(value?.value as string)}
+                    onChange={(value: Option | null, actionMeta: ActionMeta<Option>) => setTargetLanguage(value)}
                 />
                 <input className="pt-12" type="file" accept="image/*" onInput={onUploadPicture} />
                 {imgUrl && <img className="pt-12" src={imgUrl} alt="Selected" style={{ width: '100px' }} />}

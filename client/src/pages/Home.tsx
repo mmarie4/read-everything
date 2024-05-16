@@ -17,7 +17,7 @@ export const Home: FC = () => {
 
     return (
         <Wrapper errorMessage={errorMessage}>
-            <div className="p-64">
+            <div className="py-32 ">
                 <Headline translationKey="home.headline"/>
                 <div className ="w-100 p-12 lg:flex justify-center align-center gap-8">
                     <Button text={t("home.button.describe")} onClick={() => navigate('describe')}/>
