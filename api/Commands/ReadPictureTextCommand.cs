@@ -2,6 +2,7 @@ using Azure;
 using Azure.AI.Vision.ImageAnalysis;
 using MediatR;
 using ReadEverythingApi.Commands;
+using ReadEverythingApi.Extensions.Validators;
 
 public record ReadPictureTextCommand(IFormFile File, string TargetLanguage, string? SourceLanguage = null) : IRequest<string>;
 
@@ -15,6 +16,8 @@ public class ReadPictureTextCommandHandler(IConfiguration configuration, IMediat
 
     public async Task<string> Handle(ReadPictureTextCommand request, CancellationToken cancellationToken)
     {
+        request.Validate();
+        
         using var stream = request.File.OpenReadStream();
 
         var result = await _imageAnalysisClient.AnalyzeAsync(

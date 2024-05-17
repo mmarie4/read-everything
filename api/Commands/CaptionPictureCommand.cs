@@ -3,6 +3,7 @@ using Azure.AI.Vision.ImageAnalysis;
 using MediatR;
 using ReadEverythingApi.Commands;
 using ReadEverythingApi.Exceptions;
+using ReadEverythingApi.Extensions.Validators;
 
 public record CaptionPictureCommand(IFormFile File, string TargetLanguage, string? SourceLanguage = null) : IRequest<string>;
 
@@ -16,6 +17,8 @@ public class CaptionPictureCommandHandler(IConfiguration configuration, IMediato
 
     public async Task<string> Handle(CaptionPictureCommand request, CancellationToken cancellationToken)
     {
+        request.Validate();
+
         using var stream = request.File.OpenReadStream();
 
         var result = await _imageAnalysisClient.AnalyzeAsync(
