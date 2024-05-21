@@ -14,7 +14,9 @@ export const Home: FC = () => {
             <div className="py-32 ">
                 <Headline translationKey="home.headline"/>
                 <div className ="w-100 p-12 md:flex justify-center align-center gap-12">
-                    <Button text={t("home.button.describe")} onClick={() => navigate('describe')}/>
+                    <div className="m-4">
+                        <Button text={t("home.button.describe")} onClick={() => navigate('describe')}/>
+                    </div>
                     <Button text={t("home.button.read-text")} onClick={() => navigate('read-text')}/>
                 </div>
             </div>
