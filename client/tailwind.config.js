@@ -9,8 +9,10 @@ module.exports = {
       primarylight: "#977AAF",
       secondary: "#E8CF49",
       secondarylight: "#F3EBC1",
-      tertiary: "#35342E",
-      tertiarylight: "#BBBBBB",
+      tertiary: "#bebebe",
+      tertiarylight: "#e7e7e7",
+      tertiarydark: "#424242",
+      error: "#981416"
     },
     extend: {
 

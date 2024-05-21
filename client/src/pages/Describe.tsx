@@ -18,18 +18,22 @@ export const Describe: FC = () => {
     const [loading, setLoading] = useState<boolean>(false);
     const onError = (errorMessage: string) => {
         setErrorMessage(errorMessage);
-        setTimeout(() => setErrorMessage(''), 1000);
+        setTimeout(() => setErrorMessage(''), 2000);
     }
 
     const onUploadPicture = async (files: any) => {
         setCaption('');
-        console.log(files);
         const form = new FormData();
         form.append('input', files[0]);
-        form.append('targetLanguage', targetLanguage?.value as string);
+        if (!targetLanguage?.value) {
+            onError(t("validation.targetLanguage"));
+            return;
+        }
+        form.append('targetLanguage', targetLanguage.value as string);
+
         setImgUrl(URL.createObjectURL(files[0]));
         setLoading(true);
-        const result = await await http.multipart({
+        const result = await http.multipart({
             endpoint: 'caption-picture',
             content: form,
             errorCallback: (errorMessage: string) => onError(errorMessage)
@@ -43,23 +47,26 @@ export const Describe: FC = () => {
     
     return (
         <Wrapper errorMessage={errorMessage}>
-            <HomeButton />
-            <div className="p-16 flex flex-col bg-tertiarylight rounded shadow">
-                <div className="w-4/12">
+            <div className="flex justify-between p-2 items-center">
+                <HomeButton />
+                <p className="text-secondary text-md font-bold">{t("describe.title")}</p>
+            </div>
+            <div className="flex flex-col bg-tertiarylight rounded shadow p-8">
+                <div className="w-6/12 mb-4">
                     <LanguageInput
                         value={targetLanguage}
                         placeholder={t("targetLanguage")}
                         onChange={(value: Option | null, actionMeta: ActionMeta<Option>) => setTargetLanguage(value)}
                     />
                 </div>
-                <div className="flex p-8 gap-12">
+                <div className="flex gap-12">
                     <Dropzone onDrop={onUploadPicture}/>
-                    {imgUrl && <img className="py-12" src={imgUrl} alt="Selected" style={{ width: '100px' }} />}
+                    {imgUrl && <img className="     " src={imgUrl} alt="Selected" style={{ width: '100px' }} />}
                 </div>
 
-                <div className="flex align-center justify-center p-4">
+                <div className="flex align-center justify-center">
                     {loading && <Loader />}
-                    <div className="font-bold text-black mt-12">{caption}</div>
+                    {caption?.length > 0 && <div className="font-bold text-black mt-12 p-4">{caption}</div>}
                 </div>
             </div>
         </Wrapper>

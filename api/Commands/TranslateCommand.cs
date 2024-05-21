@@ -25,7 +25,7 @@ public class TranslateCommandHandler(IConfiguration configuration) : IRequestHan
             cancellationToken: cancellationToken);
 
         if (result?.Value?.Any() != true)
-            throw new DomainException("Cannot translate text");
+            throw new DomainException(Errors.CannotTranslateText);
 
         var translation = result!.Value.FirstOrDefault(v => v.DetectedLanguage?.Language == request.SourceLanguage)
             ?? result.Value.OrderByDescending(v => v.DetectedLanguage?.Score).First();

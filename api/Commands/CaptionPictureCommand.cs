@@ -27,7 +27,7 @@ public class CaptionPictureCommandHandler(IConfiguration configuration, IMediato
             cancellationToken: cancellationToken);
 
         if (string.IsNullOrEmpty(result?.Value?.Caption?.Text))
-            throw new DomainException("Cannot describe picture");
+            throw new DomainException(Errors.CannotDescribePicture);
 
         var translated = await _mediator.Send(new TranslateCommand(result.Value.Caption.Text, request.TargetLanguage, request.SourceLanguage), cancellationToken);
 

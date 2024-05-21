@@ -8,7 +8,7 @@ export interface WrapperProps {
 
 export const Wrapper: FC<WrapperProps> = (props: WrapperProps) => {
     return (
-        <div className="bg-gradient-to-b from-primary to-primarylight flex flex-col items-center justify-center flex-1 w-full basis-full h-full">
+        <div className="bg-gradient-to-b from-primary to-primarylight flex flex-col items-center justify-center flex-1 w-full basis-full h-full p-4">
             <div className="flex-1">
 
             {props.children}

@@ -2,6 +2,7 @@ using Azure;
 using Azure.AI.Vision.ImageAnalysis;
 using MediatR;
 using ReadEverythingApi.Commands;
+using ReadEverythingApi.Exceptions;
 using ReadEverythingApi.Extensions.Validators;
 
 public record ReadPictureTextCommand(IFormFile File, string TargetLanguage, string? SourceLanguage = null) : IRequest<string>;
@@ -24,6 +25,9 @@ public class ReadPictureTextCommandHandler(IConfiguration configuration, IMediat
             BinaryData.FromStream(stream),
             VisualFeatures.Read,
             cancellationToken: cancellationToken);
+
+        if (string.IsNullOrEmpty(result?.Value?.Caption?.Text))
+            throw new DomainException(Errors.CannotReadText);
 
         var text = string
             .Join("\n", result.Value.Read.Blocks.SelectMany(b => b.Lines.Select(l => l.Text)))

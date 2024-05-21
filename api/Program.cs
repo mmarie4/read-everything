@@ -1,5 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using ReadEverythingApi.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

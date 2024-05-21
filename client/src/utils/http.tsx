@@ -72,7 +72,7 @@ const handleError = (result: any, errorCallback: Function) => {
     if (result?.status === 500)
         errorCallback("Internal server error");
     if ([400, 401, 403, 404].includes(result?.status))
-        errorCallback(result?.data?.error || "Unknown error");
+        errorCallback(result?.data?.message || "Unknown error");
 }
 
 export interface Header { Authorization: string }
