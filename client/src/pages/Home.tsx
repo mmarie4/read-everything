@@ -1,4 +1,4 @@
-import { FC, useState } from "react"
+import { FC } from "react"
 import { Button } from "../components/Button"
 import t from "../translations/i18n"
 import { Headline } from "../components/Headline"
@@ -9,14 +9,8 @@ export const Home: FC = () => {
 
     const navigate = useNavigate();
 
-    const [errorMessage, setErrorMessage] = useState<string>('');
-    const onError = (errorMessage: string) => {
-        setErrorMessage(errorMessage);
-        setTimeout(() => setErrorMessage(''), 1000);
-      }
-
     return (
-        <Wrapper errorMessage={errorMessage}>
+        <Wrapper>
             <div className="py-32 ">
                 <Headline translationKey="home.headline"/>
                 <div className ="w-100 p-12 lg:flex justify-center align-center gap-8">

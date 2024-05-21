@@ -1,7 +1,7 @@
 import { FC } from "react";
 
 export interface ToastProps {
-    content: string;
+    content?: string;
 }
 
 export const Toast: FC<ToastProps> = (props: ToastProps) => {

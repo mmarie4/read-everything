@@ -3,7 +3,7 @@ import { Toast } from "./Toast";
 
 export interface WrapperProps {
     children: ReactNode;
-    errorMessage: string;
+    errorMessage?: string;
 }
 
 export const Wrapper: FC<WrapperProps> = (props: WrapperProps) => {

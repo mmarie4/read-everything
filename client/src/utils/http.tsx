@@ -1,5 +1,4 @@
 import axios from "axios";
-import store from "./store"
 import settings from "../settings.json"
 
 const serverUrl = process.env.SERVER_URL || settings.SERVER_URL;
