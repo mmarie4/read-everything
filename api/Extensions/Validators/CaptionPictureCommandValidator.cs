@@ -21,17 +21,5 @@ public static class CaptionPictureCommandValidator
         {
             throw new DomainException(Errors.InvalidTargetLanguage);
         }
-
-        if (string.IsNullOrEmpty(request.SourceLanguage))
-            throw new DomainException(Errors.NoSourceLanguageProvided);
-
-        try
-        {
-            var culture = CultureInfo.GetCultureInfo(request.SourceLanguage);
-        }
-        catch (CultureNotFoundException)
-        {
-            throw new DomainException(Errors.InvalidSourceLanguage);
-        }
     }
 }
