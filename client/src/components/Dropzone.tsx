@@ -9,10 +9,10 @@ export interface DropzoneProps {
 export const Dropzone: FC<DropzoneProps> = (props: DropzoneProps) => {
   const { getRootProps, getInputProps } = useDropzone({onDrop: props.onDrop});
   return (
-    <div {...getRootProps({ className: "border border-4 border-dashed border-tertiarydark text-tertiarydark bg-tertiarylight p-12" })}>
+    <div {...getRootProps({ className: "border border-2 rounded border-dashed border-tertiarydark text-tertiarydark bg-tertiary p-12" })}>
       <input className="" {...getInputProps()} />
       <div className="text-center">
-        <p className="font-bold">
+        <p className="font-normal text-xs">
           {t("dragndrop")}
         </p>
       </div>

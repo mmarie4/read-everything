@@ -13,7 +13,7 @@ export const Home: FC = () => {
         <Wrapper>
             <div className="py-32 ">
                 <Headline translationKey="home.headline"/>
-                <div className ="w-100 p-12 lg:flex justify-center align-center gap-8">
+                <div className ="w-100 p-12 md:flex justify-center align-center gap-12">
                     <Button text={t("home.button.describe")} onClick={() => navigate('describe')}/>
                     <Button text={t("home.button.read-text")} onClick={() => navigate('read-text')}/>
                 </div>

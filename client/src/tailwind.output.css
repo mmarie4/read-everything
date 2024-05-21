@@ -569,8 +569,8 @@ video {
   margin-bottom: 1rem;
 }
 
-.ml-4 {
-  margin-left: 1rem;
+.ml-2 {
+  margin-left: 0.5rem;
 }
 
 .mt-12 {
@@ -591,6 +591,10 @@ video {
 
 .h-screen {
   height: 100vh;
+}
+
+.w-32 {
+  width: 8rem;
 }
 
 .w-6\/12 {

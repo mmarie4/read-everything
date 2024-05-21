@@ -20,6 +20,7 @@ export const LanguageInput: FC<LanguageInputProps> = (props: LanguageInputProps)
 
     return (
         <Select
+            className="text-xs text-tertiarydark w-full"
             placeholder={props.placeholder}
             options={options}
             onChange={props.onChange}
