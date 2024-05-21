@@ -17,7 +17,9 @@ export const Home: FC = () => {
                     <div className="m-4">
                         <Button text={t("home.button.describe")} onClick={() => navigate('describe')}/>
                     </div>
-                    <Button text={t("home.button.read-text")} onClick={() => navigate('read-text')}/>
+                    <div className="m-4">
+                        <Button text={t("home.button.read-text")} onClick={() => navigate('read-text')}/>
+                    </div>
                 </div>
             </div>
         </Wrapper>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import settings from "../settings.json"
+import t from "../translations/i18n";
 
 const serverUrl = process.env.SERVER_URL || settings.SERVER_URL;
 
@@ -71,7 +72,7 @@ const handleError = (result: any, errorCallback: Function) => {
     if (result?.status === 500)
         errorCallback("Internal server error");
     if ([400, 401, 403, 404].includes(result?.status))
-        errorCallback(result?.data?.message || "Unknown error");
+        errorCallback(t(result?.data?.message) || "Unknown error");
 }
 
 export interface Header { Authorization: string }
