@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useEffect, useState } from "react"
+import { FC, useState } from "react"
 import http from "../utils/http"
 import { Wrapper } from "../components/Wrapper";
 import { LanguageInput } from "../components/LanguageInput";
@@ -13,11 +12,15 @@ import { Dropzone } from "../components/Dropzone";
 export const Describe: FC = () => {
     const [targetLanguage, setTargetLanguage] = useState<Option | null>(null);
     const [imgUrl, setImgUrl] = useState<string>('' as string);
+    const [filename, setFilename] = useState<string>('' as string);
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [caption, setCaption] = useState<string>('' as string);
     const [loading, setLoading] = useState<boolean>(false);
     const onError = (errorMessage: string) => {
         setErrorMessage(errorMessage);
+        setFilename('');
+        setCaption('');
+        setImgUrl('');
         setTimeout(() => setErrorMessage(''), 2000);
     }
 
@@ -32,6 +35,7 @@ export const Describe: FC = () => {
         form.append('targetLanguage', targetLanguage.value as string);
 
         setImgUrl(URL.createObjectURL(files[0]));
+        setFilename(files[0].name);
         setLoading(true);
         const result = await http.multipart({
             endpoint: 'caption-picture',
@@ -60,8 +64,7 @@ export const Describe: FC = () => {
                     />
                 </div>
                 <div className="flex gap-12">
-                    <Dropzone onDrop={onUploadPicture}/>
-                    {imgUrl && <img className="     " src={imgUrl} alt="Selected" style={{ width: '100px' }} />}
+                    <Dropzone onDrop={onUploadPicture} imgUrl={imgUrl} filename={filename}/>
                 </div>
 
                 <div className="flex align-center justify-center">

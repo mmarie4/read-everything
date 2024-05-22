@@ -4,6 +4,8 @@ import t from "../translations/i18n";
 
 export interface DropzoneProps {
     onDrop: (acceptedFiles: File[]) => void;
+    imgUrl?: string;
+    filename?: string;
 }
 
 export const Dropzone: FC<DropzoneProps> = (props: DropzoneProps) => {
@@ -15,6 +17,12 @@ export const Dropzone: FC<DropzoneProps> = (props: DropzoneProps) => {
         <p className="font-normal text-xs">
           {t("dragndrop")}
         </p>
+        
+        <div className="flex p-2 h-12 mt-4">
+          {props.imgUrl && <img className="mr-2" src={props.imgUrl} alt="Selected" />}
+          {props.filename && <p className="text-tertiarydark" >{props.filename}</p>}
+        </div>
+
       </div>
     </div>
   );
