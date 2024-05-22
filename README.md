@@ -1,5 +1,6 @@
 # Read everything
-React and .net app using Azure AI services to read anything in any languages
+React and .NET 8 web app using Azure AI services to read anything in any languages or describe any picture.
+Deployed [here](https://salmon-hill-0c8dea503.5.azurestaticapps.net/)
 
 ## Caption image
 - Use Azure AI Vision ImageAnalysis to caption the picture
