@@ -67,9 +67,9 @@ export const Describe: FC = () => {
                     <Dropzone onDrop={onUploadPicture} imgUrl={imgUrl} filename={filename}/>
                 </div>
 
-                <div className="flex align-center justify-center">
+                <div className="flex align-center justify-center mt-12">
                     {loading && <Loader />}
-                    {caption?.length > 0 && <div className="font-bold text-black mt-12 p-4">{caption}</div>}
+                    {caption?.length > 0 && <div className="font-bold text-black p-4">{caption}</div>}
                 </div>
             </div>
         </Wrapper>
