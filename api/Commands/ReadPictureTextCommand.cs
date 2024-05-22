@@ -26,7 +26,7 @@ public class ReadPictureTextCommandHandler(IConfiguration configuration, IMediat
             VisualFeatures.Read,
             cancellationToken: cancellationToken);
 
-        if (string.IsNullOrEmpty(result?.Value?.Caption?.Text))
+        if (result?.Value?.Read?.Blocks?.Any() != true)
             throw new DomainException(Errors.CannotReadText);
 
         var text = string
