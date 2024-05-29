@@ -1,6 +1,6 @@
 {
   "short_name": "Read Everything",
-  "name": "Read Everything",
+  "name": "Read • Everything",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#E8CF49",
+  "background_color": "#451E66"
 }
