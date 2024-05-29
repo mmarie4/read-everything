@@ -2,7 +2,7 @@ import { FC } from "react"
 import { Button } from "../components/Button"
 import t from "../translations/i18n"
 import { Headline } from "../components/Headline"
-import { Wrapper } from "../components/Wrapper"
+import { Page } from "../components/Page"
 import { useNavigate } from "react-router-dom"
 
 export const Home: FC = () => {
@@ -10,7 +10,7 @@ export const Home: FC = () => {
     const navigate = useNavigate();
 
     return (
-        <Wrapper>
+        <Page>
             <div className="py-32 ">
                 <Headline translationKey="home.headline"/>
                 <div className ="w-100 p-12 md:flex justify-center align-center gap-12">
@@ -22,6 +22,6 @@ export const Home: FC = () => {
                     </div>
                 </div>
             </div>
-        </Wrapper>
+        </Page>
     )
 }

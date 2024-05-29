@@ -8,4 +8,5 @@ public static class Errors
     public const string NoSourceLanguageProvided = "errors.noSourceLanguageProvided";
     public const string InvalidSourceLanguage = "errors.invalidSourceLanguage";
     public const string InvalidTargetLanguage = "errors.invalidTargetLanguage";
+    public const string UnknownError = "errors.unknownError";
 }

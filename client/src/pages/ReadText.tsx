@@ -1,6 +1,6 @@
 import { FC, useState } from "react"
 import http from "../utils/http"
-import { Wrapper } from "../components/Wrapper";
+import { Page } from "../components/Page";
 import { LanguageInput } from "../components/LanguageInput";
 import { ActionMeta } from "react-select";
 import { Option } from "../types/Option";
@@ -56,7 +56,7 @@ export const ReadText: FC = () => {
     }
     
     return (
-        <Wrapper errorMessage={errorMessage}>
+        <Page errorMessage={errorMessage}>
             <div className="flex justify-between p-2">
                 <HomeButton />
                 <p className="text-secondary text-md font-bold">{t("read-text.title")}</p>
@@ -77,12 +77,16 @@ export const ReadText: FC = () => {
                 <div className="flex gap-12">
                 <Dropzone onDrop={onUploadPicture} imgUrl={imgUrl} filename={filename}/>
                 </div>
-
-                <div className="flex align-center justify-center mt-12">
-                    {loading && <Loader />}
-                    {caption?.length > 0 && <div className="font-bold text-black p-4">{caption}</div>}
-                </div>
             </div>
-        </Wrapper>
+
+            {(loading || caption?.length > 0) &&
+                <div className="flex flex-col bg-tertiarylight rounded shadow p-4 mt-8">
+                    <div className="flex align-center justify-center">
+                        {loading && <Loader />}
+                        {caption?.length > 0 && <div className="font-semibold text-tertiarydark text-sm">{caption}</div>}
+                    </div>
+                </div>
+            }
+        </Page>
     )
 }

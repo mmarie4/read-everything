@@ -1,6 +1,5 @@
 import { FC, useState } from "react"
 import http from "../utils/http"
-import { Wrapper } from "../components/Wrapper";
 import { LanguageInput } from "../components/LanguageInput";
 import { ActionMeta } from "react-select";
 import { Option } from "../types/Option";
@@ -8,6 +7,7 @@ import t from "../translations/i18n";
 import { Loader } from "../components/Loader";
 import { HomeButton } from "../components/HomeButton";
 import { Dropzone } from "../components/Dropzone";
+import { Page } from "../components/Page";
 
 export const Describe: FC = () => {
     const [targetLanguage, setTargetLanguage] = useState<Option | null>(null);
@@ -50,13 +50,13 @@ export const Describe: FC = () => {
     }
     
     return (
-        <Wrapper errorMessage={errorMessage}>
+        <Page errorMessage={errorMessage}>
             <div className="flex justify-between p-2 items-center">
                 <HomeButton />
                 <p className="text-secondary text-md font-bold">{t("describe.title")}</p>
             </div>
             <div className="flex flex-col bg-tertiarylight rounded shadow p-8">
-                <div className="w-6/12 mb-4">
+                <div className="w-full mb-4">
                     <LanguageInput
                         value={targetLanguage}
                         placeholder={t("targetLanguage")}
@@ -67,11 +67,16 @@ export const Describe: FC = () => {
                     <Dropzone onDrop={onUploadPicture} imgUrl={imgUrl} filename={filename}/>
                 </div>
 
-                <div className="flex align-center justify-center mt-12">
-                    {loading && <Loader />}
-                    {caption?.length > 0 && <div className="font-bold text-black p-4">{caption}</div>}
-                </div>
             </div>
-        </Wrapper>
+
+            {(loading || caption?.length > 0) &&
+                <div className="flex flex-col bg-tertiarylight rounded shadow p-4 mt-8">
+                    <div className="flex align-center justify-center">
+                        {loading && <Loader />}
+                        {caption?.length > 0 && <div className="font-semibold text-tertiarydark text-sm">{caption}</div>}
+                    </div>
+                </div>
+            }
+        </Page>
     )
 }

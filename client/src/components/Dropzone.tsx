@@ -18,9 +18,12 @@ export const Dropzone: FC<DropzoneProps> = (props: DropzoneProps) => {
           {t("dragndrop")}
         </p>
         
-        <div className="flex p-2 h-12 mt-4">
+        <div className="flex p-2 h-32 mt-8 justify-center">
           {props.imgUrl && <img className="mr-2" src={props.imgUrl} alt="Selected" />}
-          {props.filename && <p className="text-tertiarydark" >{props.filename}</p>}
+        </div>
+        <div className="flex justify-center">
+          {props.filename && <p className="text-tertiarydark text-xs flex items-center" >{props.filename}</p>}
+
         </div>
 
       </div>

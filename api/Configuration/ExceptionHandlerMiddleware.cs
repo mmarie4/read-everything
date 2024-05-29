@@ -28,7 +28,7 @@ public class ExceptionHandleMiddleware(RequestDelegate next)
         }
         else
         {
-            await httpContext.Response.WriteAsync("Unknown error");
+            await httpContext.Response.WriteAsync(Errors.UnknownError);
         }
     }
 }
